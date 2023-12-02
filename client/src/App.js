@@ -7,27 +7,27 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import './styles/styles.css';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path = "/" element = { <Navigate to = "/CpuList" /> } />
-        <Route path = "/CpuList" element = { < CpuList /> } />
-        <Route path = "/CpuUpload" element = { < CpuUpload /> } />
-        <Route path = "/ReviewForCpu" element = { < ReviewForCpu /> } />
-        <Route path = "/ReviewForCpuUpload" element = { < ReviewForCpuUpload /> } />
-        <Route path = "*" element = { < NotFound /> } />
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path = "/" element = { <Navigate to = "/CpuList" /> } />
+                <Route path = "/CpuList" element = { < CpuList /> } />
+                <Route path = "/CpuUpload" element = { < CpuUpload /> } />
+                <Route path = "/ReviewForCpu/:cpu_id" element = { < ReviewForCpu /> } />
+                <Route path = "/ReviewForCpuUpload" element = { < ReviewForCpuUpload /> } />
+                <Route path = "*" element = { < NotFound /> } />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 function NotFound() {
-  return (
-      <div>
-        <h2>404</h2>
-        <p>A kért oldal nem található!</p>
-      </div>
-  );
+    return (
+        <div>
+            <h2>404</h2>
+            <p>A kért oldal nem található!</p>
+        </div>
+    );
 }
 
 export default App;
