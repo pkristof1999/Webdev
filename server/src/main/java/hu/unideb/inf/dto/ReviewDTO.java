@@ -1,6 +1,6 @@
 package hu.unideb.inf.dto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import org.hibernate.annotations.NamedQuery;
 import java.io.Serializable;
 import java.util.Objects;
@@ -31,7 +31,6 @@ public class ReviewDTO implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CPU_ID")
     private CPUDTO cpuDTO;
-
 
     public ReviewDTO() {
     }

@@ -1,6 +1,6 @@
 package hu.unideb.inf.dto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class CPUDTO implements Serializable {
     @Column(name = "CORECOUNT")
     private int coreCount;
 
-    @OneToMany(mappedBy = "cpuDTO")
+    @OneToMany(mappedBy = "cpuDTO", cascade = CascadeType.ALL)
     private List<ReviewDTO> reviewDTOList;
 
     public List<ReviewDTO> getReviewDTOList() {
