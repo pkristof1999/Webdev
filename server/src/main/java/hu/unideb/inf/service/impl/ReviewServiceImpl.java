@@ -1,86 +1,63 @@
 package hu.unideb.inf.service.impl;
 
-import hu.unideb.inf.dto.CPUDTO;
 import hu.unideb.inf.dto.ReviewDTO;
 import hu.unideb.inf.repository.ReviewRepository;
 import hu.unideb.inf.service.ReviewService;
-import hu.unideb.inf.uito.CPUModelUITO;
 import hu.unideb.inf.uito.ReviewOfCPUUITO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 public class ReviewServiceImpl implements ReviewService {
+
     @Autowired
-    ReviewRepository reviewRepository;
-
-    private void dtoToUito(ReviewOfCPUUITO reviewOfCPUUITO, ReviewDTO reviewDTO) {
-        CPUModelUITO uito = new CPUModelUITO();
-
-        BeanUtils.copyProperties(reviewDTO.getCpuDTO(), uito);
-        reviewOfCPUUITO.setCpuModelUITO(uito);
-    }
-
-    private ReviewDTO uitoToDTO(ReviewOfCPUUITO reviewOfCPUUITO) {
-        ReviewDTO dto = new ReviewDTO();
-        CPUDTO cpuDTO = new CPUDTO();
-        BeanUtils.copyProperties(reviewOfCPUUITO, dto);
-        BeanUtils.copyProperties(reviewOfCPUUITO.getCpuModelUITO(), cpuDTO);
-        dto.setCpuDTO(cpuDTO);
-        List<ReviewDTO> rlst = new ArrayList<>();
-        rlst.add(dto);
-        cpuDTO.getReviewDTOList().addAll(rlst);
-
-        return dto;
-    }
+    private ReviewRepository reviewRepository;
 
     @Override
-    @Transactional(readOnly = false)
     public ReviewOfCPUUITO saveReview(ReviewOfCPUUITO reviewOfCPUUITO) {
-        ReviewDTO dto = uitoToDTO(reviewOfCPUUITO);
-        dto = reviewRepository.save(dto);
-        BeanUtils.copyProperties(dto, reviewOfCPUUITO);
-        dtoToUito(reviewOfCPUUITO, dto);
-
+        ReviewDTO reviewDTO = new ReviewDTO();
+        BeanUtils.copyProperties(reviewOfCPUUITO, reviewDTO);
+        reviewRepository.save(reviewDTO);
         return reviewOfCPUUITO;
     }
 
     @Override
     public List<ReviewOfCPUUITO> fetchAllReviews() {
-        List<ReviewDTO> dtoList = reviewRepository.findAll();
-        List<ReviewOfCPUUITO> uitoList = new ArrayList<>();
-        dtoList.forEach(dto -> {
+        List<ReviewOfCPUUITO> reviewList = new ArrayList<>();
+        List<ReviewDTO> reviewDTOList = reviewRepository.findAll();
+
+        reviewDTOList.forEach(dto -> {
             ReviewOfCPUUITO tmpUITO = new ReviewOfCPUUITO();
             BeanUtils.copyProperties(dto, tmpUITO);
-            dtoToUito(tmpUITO, dto);
-            uitoList.add(tmpUITO);
+            reviewList.add(tmpUITO);
         });
 
-        return uitoList;
+        return reviewList;
     }
 
     @Override
     public ReviewOfCPUUITO getReview(ReviewOfCPUUITO reviewOfCPUUITO) {
-        if(null != reviewOfCPUUITO.getReviewText()) {
-            ReviewDTO dto = new ReviewDTO();
-            BeanUtils.copyProperties(reviewOfCPUUITO, dto);
-            dto = reviewRepository.getOne(dto.getId());
-            BeanUtils.copyProperties(dto, reviewOfCPUUITO);
-        }
-
-        return reviewOfCPUUITO;
+        ReviewDTO dto = reviewRepository.findById(reviewOfCPUUITO.getId()).orElse(null);
+        ReviewOfCPUUITO uito = new ReviewOfCPUUITO();
+        BeanUtils.copyProperties(dto, uito);
+        return uito;
     }
 
     @Override
-    @Transactional
-    public void deleteReview(ReviewOfCPUUITO reviewOfCPUUITO) {
-        reviewRepository.deleteById(reviewOfCPUUITO.getId());
+    public void deleteReview(Long id) {
+        reviewRepository.deleteById(id);
+    }
+
+    @Override
+    public void uploadReview(ReviewOfCPUUITO reviewOfCPUUITO) {
+        ReviewDTO reviewDTO = new ReviewDTO();
+        BeanUtils.copyProperties(reviewOfCPUUITO, reviewDTO);
+        reviewRepository.save(reviewDTO);
     }
 }
-

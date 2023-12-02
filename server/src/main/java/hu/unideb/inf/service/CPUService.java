@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface CPUService {
     List<CPUModelUITO> getAllCPUModell();
-
     CPUModelUITO getCPU(CPUModelUITO cpuModelUITO);
-
-    public void deleteCPUEntry(Long id);
+    void deleteCPUEntry(Long id);
+    void uploadCPU(CPUModelUITO cpuModelUITO);
 }

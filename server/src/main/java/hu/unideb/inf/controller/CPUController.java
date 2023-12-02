@@ -1,54 +1,35 @@
 package hu.unideb.inf.controller;
 
-import hu.unideb.inf.service.CPUService;
-import hu.unideb.inf.service.ReviewService;
 import hu.unideb.inf.uito.CPUModelUITO;
-import hu.unideb.inf.uito.ReviewOfCPUUITO;
+import hu.unideb.inf.service.CPUService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
-@Controller("cpuController")
-@SessionScope
+@RestController
+@RequestMapping("/api/cpu")
 public class CPUController {
-    List<CPUModelUITO> cpuModelUITOList;
-    List<ReviewOfCPUUITO> reviewOfCPUUITOList;
 
     @Autowired
-    CPUService cpuService;
+    private CPUService cpuService;
 
-    @Autowired
-    ReviewService reviewService;
-
-    @PostConstruct
-    public void init() {
-        reviewOfCPUUITOList = reviewService.fetchAllReviews();
-        cpuModelUITOList = cpuService.getAllCPUModell();
-        cpuModelUITOList.forEach(x -> x.setReviewOfCPUUITOList(new ArrayList<>()));
-
-        for (ReviewOfCPUUITO reviewOfCPUUITO : reviewOfCPUUITOList) {
-            for (CPUModelUITO cpuModelUITO : cpuModelUITOList) {
-               if (reviewOfCPUUITO.getCpuModelUITO().getId().equals(cpuModelUITO.getId())) {
-                   cpuModelUITO.getReviewOfCPUUITOList().add(reviewOfCPUUITO);
-               }
-            }
-        }
+    @GetMapping("/list")
+    public ResponseEntity<List<CPUModelUITO>> getAllCPUs() {
+        List<CPUModelUITO> cpuList = cpuService.getAllCPUModell();
+        return ResponseEntity.ok(cpuList);
     }
 
-    public void removeDeveloper(Long id) {
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadCPU(@RequestBody CPUModelUITO cpuModelUITO) {
+        cpuService.uploadCPU(cpuModelUITO);
+        return ResponseEntity.ok("CPU uploaded successfully!");
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCPU(@PathVariable Long id) {
         cpuService.deleteCPUEntry(id);
-        cpuModelUITOList = cpuService.getAllCPUModell();
-    }
-
-    public List<CPUModelUITO> getCpuModelUITOList() {
-        return cpuModelUITOList;
-    }
-
-    public void setCpuModelUITOList(List<CPUModelUITO> cpuModelUITOList) {
-        this.cpuModelUITOList = cpuModelUITOList;
+        return ResponseEntity.ok("CPU deleted successfully!");
     }
 }

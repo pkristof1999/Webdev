@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class CPUServiceImpl implements CPUService {
+
     @Autowired
     private CPURepository cpuRepository;
 
@@ -36,16 +37,19 @@ public class CPUServiceImpl implements CPUService {
     public CPUModelUITO getCPU(CPUModelUITO cpuModelUITO) {
         CPUDTO dto = cpuRepository.findByManufacturer(cpuModelUITO.getManufacturer());
         CPUModelUITO uito = new CPUModelUITO();
-
         BeanUtils.copyProperties(dto, uito);
-
         return uito;
     }
 
     @Override
     public void deleteCPUEntry(Long id) {
-        CPUDTO dto = cpuRepository.getReferenceById(id);
+        cpuRepository.deleteById(id);
+    }
 
-        cpuRepository.save(dto);
+    @Override
+    public void uploadCPU(CPUModelUITO cpuModelUITO) {
+        CPUDTO cpuDTO = new CPUDTO();
+        BeanUtils.copyProperties(cpuModelUITO, cpuDTO);
+        cpuRepository.save(cpuDTO);
     }
 }
