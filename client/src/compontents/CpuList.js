@@ -10,14 +10,27 @@ const CpuList = () => {
     useEffect( () => {
         ApiService.getCPUList()
             .then((response) => setCPUs(response.data))
-            .catch((error) => console.error('Error fetching CPUs:', error));
+            .catch((error) => console.error("Hiba a CPU-k betöltésénél:", error));
     }, []);
 
     const navigateCpuUpload = () => {
         navigate("/CpuUpload");
     }
 
-    console.log(cpus);
+    const handleCPUEntryDelete = (cpuId) => {
+        const confirmDelete = window.confirm("Biztosan kitörli a CPU-t a listából?");
+
+        if (confirmDelete) {
+            ApiService.deleteCPUEntry(cpuId)
+                .then(() => {
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error deleting CPU:', error);
+                })
+        }
+    }
+
 
     return (
         <div className={"main-container"}>
@@ -48,8 +61,9 @@ const CpuList = () => {
                                 <Link className={"table-button-style link"} to={`/ReviewForCpu/${cpu.id}`}>Értékelések</Link>
                             </td>
                             <td>
-                                <button className={"table-button-style"}>
-                                    Delete
+                                <button className={"table-button-style"}
+                                        onClick={() => handleCPUEntryDelete(cpu.id)}>
+                                    Törlés
                                 </button>
                             </td>
                         </tr>
