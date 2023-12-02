@@ -16,6 +16,9 @@ public class ReviewDTO implements Serializable {
     @Column(name = "REVIEW_ID")
     private Long id;
 
+    @Column(name = "REVIEWER")
+    private String reviewer;
+
     @Column(name = "REVIEW_TEXT")
     private String reviewText;
 
@@ -29,11 +32,13 @@ public class ReviewDTO implements Serializable {
     @JoinColumn(name = "CPU_ID")
     private CPUDTO cpuDTO;
 
+
     public ReviewDTO() {
     }
 
-    public ReviewDTO(Long id, String reviewText, int score, boolean recommend, CPUDTO cpuDTO) {
+    public ReviewDTO(Long id, String reviewer, String reviewText, int score, boolean recommend, CPUDTO cpuDTO) {
         this.id = id;
+        this.reviewer = reviewer;
         this.reviewText = reviewText;
         this.score = score;
         this.recommend = recommend;
@@ -46,6 +51,14 @@ public class ReviewDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
     }
 
     public String getReviewText() {
@@ -84,18 +97,19 @@ public class ReviewDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ReviewDTO reviewDTO)) return false;
-        return getScore() == reviewDTO.getScore() && isRecommend() == reviewDTO.isRecommend() && Objects.equals(getId(), reviewDTO.getId()) && Objects.equals(getReviewText(), reviewDTO.getReviewText()) && Objects.equals(getCpuDTO(), reviewDTO.getCpuDTO());
+        return getScore() == reviewDTO.getScore() && isRecommend() == reviewDTO.isRecommend() && Objects.equals(getId(), reviewDTO.getId()) && Objects.equals(getReviewer(), reviewDTO.getReviewer()) && Objects.equals(getReviewText(), reviewDTO.getReviewText()) && Objects.equals(getCpuDTO(), reviewDTO.getCpuDTO());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getReviewText(), getScore(), isRecommend(), getCpuDTO());
+        return Objects.hash(getId(), getReviewer(), getReviewText(), getScore(), isRecommend(), getCpuDTO());
     }
 
     @Override
     public String toString() {
         return "ReviewDTO{" +
                 "id=" + id +
+                ", reviewer='" + reviewer + '\'' +
                 ", reviewText='" + reviewText + '\'' +
                 ", score=" + score +
                 ", recommend=" + recommend +
