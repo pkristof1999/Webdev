@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "./cpulist.css";
+
+* {
+    font-size: 1rem;
+    font-family: serif;
+    user-select: none;
+    transition-duration: 0.8s;
+    font-weight: bolder;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+.main-container {
+    background-image: url("CPU-Background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: whitesmoke;
 }
+
+/* * {
+    outline: 1px solid red;
+    outline-offset: -1px;
+} */
