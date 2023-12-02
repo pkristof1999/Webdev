@@ -23,9 +23,9 @@ function App() {
 
 function NotFound() {
     return (
-        <div>
-            <h2>404</h2>
-            <p>A kért oldal nem található!</p>
+        <div className={"main-container"}>
+            <h2 className={"notfound-h2"}>!! 404 !!</h2>
+            <p className={"notfound-p"}>A kért oldal nem található!</p>
         </div>
     );
 }
