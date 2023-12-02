@@ -60,38 +60,3 @@ th, td, tr {
     font-size: 1.15em;
     font-weight: bold;
 }
-
-.button-style {
-    background: whitesmoke;
-    font-weight: bolder;
-    text-align: center;
-    margin: 0 0 2em;
-    border: medium solid rgb(185, 197, 246);
-    border-radius: 6px;
-    transition-duration: 0.8s;
-    width: 15em;
-    height: 2.25em;
-    cursor: pointer;
-}
-
-.table-button-style {
-    background: whitesmoke;
-    font-weight: bolder;
-    text-align: center;
-    border: medium solid rgb(185, 197, 246);
-    border-radius: 2px;
-    transition-duration: 0.8s;
-    width: 7em;
-    height: 4em;
-    cursor: pointer;
-}
-
-.button-style:hover, .table-button-style:hover {
-    background: rgb(185, 197, 246);
-    color: darkblue;
-}
-
-.button-style:active, .table-button-style:active {
-    transform: scale(0.85);
-    transition-duration: 0.3s;
-}

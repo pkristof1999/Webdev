@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ApiService from '../services/ApiService';
+import "../styles/styles.css";
 
 const CpuList = () => {
     const navigate = useNavigate();

@@ -1,4 +1,5 @@
 @import "./cpulist.css";
+@import "./cpuupload.css";
 
 * {
     font-size: 1rem;
@@ -22,6 +23,81 @@
     width: 100vw;
     height: 100vh;
     color: whitesmoke;
+}
+
+.first-content {
+    margin-top: 2em;
+}
+
+.content {
+    position: relative;
+    padding: 0.5em;
+}
+
+.last-content {
+    margin-bottom: 2em;
+}
+
+.input-field {
+    position: relative;
+    background: whitesmoke;
+    width: 20em;
+    height: 2em;
+    border: thin solid rgb(185, 197, 246);
+    border-radius: 15px;
+    transition-duration: 0.8s;
+    text-align: center;
+    caret-color: blueviolet;
+    caret-shape: auto;
+}
+
+.input-field:hover {
+    border: medium solid rgb(185, 197, 246);
+    background: rgb(185, 197, 246);
+}
+
+.input-field::placeholder {
+    font-weight: bolder;
+}
+
+.button-style {
+    background: whitesmoke;
+    font-weight: bolder;
+    text-align: center;
+    margin: 0 0 2em;
+    border: medium solid rgb(185, 197, 246);
+    border-radius: 6px;
+    transition-duration: 0.8s;
+    width: 12em;
+    height: 2.25em;
+    cursor: pointer;
+}
+
+.table-button-style {
+    background: whitesmoke;
+    font-weight: bolder;
+    text-align: center;
+    border: medium solid rgb(185, 197, 246);
+    border-radius: 2px;
+    transition-duration: 0.8s;
+    width: 7em;
+    height: 4em;
+    cursor: pointer;
+}
+
+.bottom-buttons {
+    display: flex;
+    margin: 0 1em;
+}
+
+.button-style:hover, .table-button-style:hover {
+    background: rgb(185, 197, 246);
+    color: darkblue;
+}
+
+.button-style:active, .table-button-style:active {
+    transform: scale(0.85);
+    transition-duration: 0.3s;
 }
 
 /* * {

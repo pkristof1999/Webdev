@@ -1,0 +1,31 @@
+.cpuupload-h2 {
+    margin-top: 3.8em;
+}
+
+.upload-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32em;
+    height: 26em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.upload-blur-container {
+    background-color: rgba(107, 123, 140, 0.5);
+    backdrop-filter: blur(24px);
+    border: 1px solid whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32em;
+    height: 26em;
+    border-radius: 25px;
+    z-index: 0;
+}
