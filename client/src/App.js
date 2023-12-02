@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from "react";
+import CpuList from "./compontents/CpuList";
+import CpuUpload from "./compontents/CpuUpload";
+import ReviewForCpu from "./compontents/ReviewForCpu";
+import ReviewForCpuUpload from "./compontents/ReviewForCpuUpload";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import './styles/styles.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path = "/" element = { <Navigate to = "/CpuList" /> } />
+        <Route path = "/CpuList" element = { < CpuList /> } />
+        <Route path = "/CpuUpload" element = { < CpuUpload /> } />
+        <Route path = "/ReviewForCpu" element = { < ReviewForCpu /> } />
+        <Route path = "/ReviewForCpuUpload" element = { < ReviewForCpuUpload /> } />
+        <Route path = "*" element = { < NotFound /> } />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function NotFound() {
+  return (
+      <div>
+        <h2>404</h2>
+        <p>A kért oldal nem található!</p>
+      </div>
   );
 }
 
