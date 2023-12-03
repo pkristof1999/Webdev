@@ -21,9 +21,21 @@ public class ReviewController {
         return ResponseEntity.ok(reviewList);
     }
 
-    @PostMapping("/upload")
+    @GetMapping("/list/{cpuId}")
+    public ResponseEntity<List<ReviewOfCPUUITO>> getReviewsByCpuId(@PathVariable Long cpuId) {
+        List<ReviewOfCPUUITO> reviewList = reviewService.fetchReviewsByCpuId(cpuId);
+        return ResponseEntity.ok(reviewList);
+    }
+
+    /* @PostMapping("/upload")
     public ResponseEntity<String> uploadReview(@RequestBody ReviewOfCPUUITO reviewOfCPUUITO) {
-        reviewService.uploadReview(reviewOfCPUUITO);
+        reviewService.uploadReview(cpuId, reviewOfCPUUITO);
+        return ResponseEntity.ok("Review uploaded successfully!");
+    } */
+
+    @PostMapping("/upload/{cpuId}")
+    public ResponseEntity<String> uploadReview(@PathVariable Long cpuId, @RequestBody ReviewOfCPUUITO reviewOfCPUUITO) {
+        reviewService.uploadReview(cpuId, reviewOfCPUUITO);
         return ResponseEntity.ok("Review uploaded successfully!");
     }
 

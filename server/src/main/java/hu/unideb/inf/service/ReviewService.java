@@ -9,5 +9,6 @@ public interface ReviewService {
     List<ReviewOfCPUUITO> fetchAllReviews();
     ReviewOfCPUUITO getReview(ReviewOfCPUUITO reviewOfCPUUITO);
     void deleteReview(Long id);
-    void uploadReview(ReviewOfCPUUITO reviewOfCPUUITO);
+    void uploadReview(Long cpuId, ReviewOfCPUUITO reviewOfCPUUITO);
+    List<ReviewOfCPUUITO> fetchReviewsByCpuId(Long cpuId);
 }

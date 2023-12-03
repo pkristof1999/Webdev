@@ -13,7 +13,7 @@ function App() {
                 <Route path = "/" element = { <Navigate to = "/CpuList" /> } />
                 <Route path = "/CpuList" element = { < CpuList /> } />
                 <Route path = "/CpuUpload" element = { < CpuUpload /> } />
-                <Route path = "/ReviewForCpu/:cpu_id" element = { < ReviewForCpu /> } />
+                <Route path = "/ReviewForCpu/:cpuID" element = { < ReviewForCpu /> } />
                 <Route path = "/ReviewForCpuUpload" element = { < ReviewForCpuUpload /> } />
                 <Route path = "*" element = { < NotFound /> } />
             </Routes>

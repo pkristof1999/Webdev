@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ApiService from '../services/ApiService';
 
 const ReviewForCpu = () => {
-	const { cpuID } = useParams();
+	const { cpuID } = useParams()
 	const [reviews, setReviews] = useState([]);
+
+	console.log(cpuID)
 
 	useEffect(() => {
 		ApiService.getReviews(cpuID)
