@@ -12,11 +12,29 @@ const ReviewForCpu = () => {
 	useEffect(() => {
 		ApiService.getReviews(cpuID)
 			.then((response) => setReviews(response.data))
-			.catch((error) => console.error('Error fetching reviews:', error));
+			.catch((error) => console.error("Hiba az értékelések betöltésénél: ", error));
 	}, [cpuID]);
 
 	const navigateCPUList = () => {
 		navigate("/CPUList")
+	}
+
+	const navigateReviewUpload = () => {
+		navigate("/ReviewForCpuUpload");
+	}
+
+	const handleReviewEntryDelete = (reviewID) => {
+		const confirmDelete = window.confirm("Biztosan kitörli az értékelést a listából?");
+
+		if (confirmDelete) {
+			ApiService.deleteReviewEntry(reviewID)
+				.then(() => {
+					window.location.reload();
+				})
+				.catch((error) => {
+					console.error("Hiba az értékelés törlésénél: ", error);
+				})
+		}
 	}
 
 	return (
@@ -41,7 +59,7 @@ const ReviewForCpu = () => {
 							<td>{review.recommend ? "Igen" : "Nem"}</td>
 							<td>
 								<button className={"table-button-style"}
-										>
+										onClick={() => handleReviewEntryDelete(review.id)}>
 									Törlés
 								</button>
 							</td>
@@ -49,10 +67,12 @@ const ReviewForCpu = () => {
 					))}
 					</tbody>
 				</table>
-				<button className={"button-style"}
-						>
-					Értékelés Hozzáadása
-				</button>
+				<div className={"bottom-buttons"}>
+					<button className={"button-style"}
+							onClick={navigateReviewUpload}>
+						Értékelés Hozzáadása
+					</button>
+				</div>
 				<div className={"bottom-buttons"}>
 					<button className={"button-style"}
 							onClick={navigateCPUList}>

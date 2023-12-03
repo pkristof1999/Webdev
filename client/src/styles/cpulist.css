@@ -43,7 +43,7 @@ th, td, tr {
 }
 
 .board-container table {
-    backdrop-filter: blur(256px);
+    background-color: #323c81;
     border-collapse: collapse;
     position: relative;
     width: 60em;
