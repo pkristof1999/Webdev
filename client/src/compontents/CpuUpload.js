@@ -18,10 +18,6 @@ const CpuUpload = () => {
 
 	const navigate = useNavigate();
 
-	const handleChange = (e) => {
-		setCPUData({ ...cpuData, [e.target.name]: e.target.value });
-	};
-
 	const handleSubmit = (e) => {
 		try {
 			if (
