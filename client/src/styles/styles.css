@@ -234,7 +234,7 @@ th, td, tr {
     align-items: center;
 }
 
-.dropdown-active .dropbtn-arrow {
+.active-dropdown .dropbtn-arrow {
     transform: rotate(180deg);
 }
 
@@ -256,17 +256,19 @@ th, td, tr {
 
 .dropdown-content {
     display: none;
-    position: absolute;
+    color: rgb(128, 128, 128);
     width: 20.25em;
-    height: 2em;
+    height: auto;
     border-radius: 15px;
     background-color: #f1f1f1;
-    border: thin solid grey;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 1;
+    border: thin solid rgb(185, 197, 246);
     cursor: pointer;
 }
 
+.dropdown-content p {
+    padding: 0.4em;
+}
+
 .dropdown-content p:hover {
     color: dodgerblue;
 }
@@ -274,6 +276,7 @@ th, td, tr {
 .dropdown-content p:hover {
     color: dodgerblue;
 }
-.dropdown-active .dropdown-content {
+
+.active-dropdown .dropdown-content {
     display: block;
 }

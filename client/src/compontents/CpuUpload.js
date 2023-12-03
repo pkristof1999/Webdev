@@ -11,7 +11,8 @@ const CpuUpload = () => {
 
 	const navigate = useNavigate();
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
+		e.preventDefault();
 		try {
 			if (
 				manufacturer === "" || manufacturer === null
@@ -28,7 +29,6 @@ const CpuUpload = () => {
 					"coreCount": coreCount
 				}
 
-				e.preventDefault();
 				ApiService.createCPUEntry(dataToJson)
 					.then(() => navigate("/CPUList"))
 					.catch((error) => console.error("Hiba a CPU létrehozásakor: ", error));
