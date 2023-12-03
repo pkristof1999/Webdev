@@ -5,6 +5,6 @@ Webfejlesztés tárgyhoz beadandó
     cd server
     mvn spring-boot:run
 
-# Frontend futtatása:
+# Kliens futtatása:
     cd client
     npm start
