@@ -210,3 +210,70 @@ th, td, tr {
     font-size: 1.5em;
     color: yellow;
 }
+
+.dropbtn {
+    position: relative;
+    background: whitesmoke;
+    color: rgb(128, 128, 128);
+    width: 20.25em;
+    height: 2.175em;
+    border: 1px solid rgb(185, 197, 246);
+    border-radius: 15px;
+    transition-duration: 0.8s;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 0.25em;
+}
+
+.dropbtn-arrow {
+    position: absolute;
+    top: 0;
+    right: 0.8em;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-active .dropbtn-arrow {
+    transform: rotate(180deg);
+}
+
+.active-dropdown .dropbtn-arrow {
+    transform: rotate(180deg);
+}
+
+.dropbtn:hover {
+    border: thin solid dodgerblue;
+    background: rgb(185, 197, 246);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-list-item;
+    text-align: center;
+    margin: 0.2em 0 2em;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 20.25em;
+    height: 2em;
+    border-radius: 15px;
+    background-color: #f1f1f1;
+    border: thin solid grey;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.dropdown-content p:hover {
+    color: dodgerblue;
+}
+
+.dropdown-content p:hover {
+    color: dodgerblue;
+}
+.dropdown-active .dropdown-content {
+    display: block;
+}

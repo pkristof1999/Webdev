@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import ApiService from '../services/ApiService';
+import '../styles/styles.css'
 
 const ReviewForCpuUpload = () => {
 	const { state } = useLocation();
@@ -8,9 +9,10 @@ const ReviewForCpuUpload = () => {
 	const navigate = useNavigate();
 	const [reviewText, setReviewText] = useState("")
 	const [score, setScore] = useState("")
-	const [recommend, setRecommend] = useState("")
+	const [selectedItem, setSelectedItem] = useState("Ajánlás: Ajánlott");
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-	console.log(cpuID)
+	console.log(selectedItem)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -25,6 +27,11 @@ const ReviewForCpuUpload = () => {
 	const navigateReviewList = (cpuID) => {
 		navigate(`/ReviewForCpu/${cpuID}`)
 	}
+
+	const handleDropdownItemClick = (value) => {
+		setSelectedItem(value);
+		setIsDropdownOpen(false);
+	};
 
 	return (
 		<div className={"main-container"}>
@@ -51,15 +58,25 @@ const ReviewForCpuUpload = () => {
 						onChange={(e) => setScore(e.target.value)}
 					/>
 				</div>
-				<div className = "last-content content">
-					<input
-						className={"input-field"}
-						type="text"
-						placeholder="Ájánlás"
-						id="recommend"
-						value={recommend}
-						onChange={(e) => setRecommend(e.target.value)}
-					/>
+				<div className={`dropdown ${isDropdownOpen ? "active-dropdown" : ""}`}>
+					<button
+						className={"dropbtn"}
+						onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                        <span>{selectedItem || "Ajánlás: Ajánlott"}</span>
+						<span className="dropbtn-arrow">
+                            &#9660;
+                        </span>
+					</button>
+					<div id="myDropdown">
+						<div className={"dropdown-content"}>
+							<p onClick={() => handleDropdownItemClick("Ajánlás: Ajánlott")}>
+								Ajánlás: Ajánlott
+							</p>
+							<p onClick={() => handleDropdownItemClick("Ajánlás: Nem Ajánlott")}>
+								Ajánlás: Nem Ajánlott
+							</p>
+						</div>
+					</div>
 				</div>
 				<div className={"bottom-buttons"}>
 					<form onSubmit={handleSubmit}>
