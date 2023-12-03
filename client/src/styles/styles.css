@@ -1,6 +1,7 @@
-@import "./cpulist.css";
-@import "./cpuupload.css";
-@import "./notfound.css";
+/* * {
+    outline: 1px solid red;
+    outline-offset: -1px;
+} */
 
 * {
     font-size: 1rem;
@@ -11,6 +12,16 @@
     padding: 0;
     margin: 0;
     overflow: hidden;
+}
+
+h2 {
+    font-size: 3em;
+    font-weight: bold;
+    padding: 1em
+}
+
+th, td, tr {
+    border: 1px solid whitesmoke;
 }
 
 .main-container {
@@ -101,7 +112,97 @@
     transition-duration: 0.3s;
 }
 
-/* * {
-    outline: 1px solid red;
-    outline-offset: -1px;
-} */
+.link {
+    text-decoration: none;
+    color: black;
+    padding: 1.28em 0.9em;
+}
+
+.board-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70em;
+    height: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.board-blur-container {
+    background-color: rgba(107, 123, 140, 0.5);
+    backdrop-filter: blur(24px);
+    border: 2px solid whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70em;
+    height: 50em;
+    border-radius: 8px;
+    z-index: 0;
+}
+
+.board-container table {
+    background-color: #323c81;
+    border-collapse: collapse;
+    position: relative;
+    width: 60em;
+    height: 40em;
+    margin: 1.5em;
+    cursor: default;
+    text-align: center;
+    table-layout: fixed;
+    font-size: 1.1em;
+}
+
+.thead-style th {
+    padding: 1em;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.cpuupload-h2 {
+    margin-top: 3.8em;
+}
+
+.upload-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32em;
+    height: 26em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.upload-blur-container {
+    background-color: rgba(107, 123, 140, 0.5);
+    backdrop-filter: blur(24px);
+    border: 1px solid whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32em;
+    height: 26em;
+    border-radius: 25px;
+    z-index: 0;
+}
+
+.notfound-h2 {
+    font-size: 4em;
+    color: indianred;
+}
+
+.notfound-p {
+    font-size: 1.5em;
+    color: yellow;
+}
