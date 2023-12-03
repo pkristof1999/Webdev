@@ -60,13 +60,6 @@ public class ReviewServiceImpl implements ReviewService {
         reviewRepository.deleteById(id);
     }
 
-    /* @Override
-    public void uploadReview(Long cpuId, ReviewOfCPUUITO reviewOfCPUUITO) {
-        ReviewDTO reviewDTO = new ReviewDTO();
-        BeanUtils.copyProperties(reviewOfCPUUITO, reviewDTO);
-        reviewRepository.save(reviewDTO);
-    } */
-
     @Override
     public void uploadReview(Long cpuId, ReviewOfCPUUITO reviewOfCPUUITO) {
         CPUDTO cpuDTO = cpuRepository.findById(cpuId)
