@@ -95,7 +95,7 @@ public class LoadInitialData implements CommandLineRunner {
                 ReviewOfCPUUITO review4 = new ReviewOfCPUUITO();
                 review4.setReviewText("Remek, minden szempontból tökéletes választás!");
                 review4.setScore(5);
-                review4.setRecommend(false);
+                review4.setRecommend(true);
                 review4.setCpuModelUITO(cpu);
                 reviewService.uploadReview(cpu.getId(), review4);
             }
