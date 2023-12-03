@@ -5,7 +5,7 @@ import '../styles/styles.css'
 
 const ReviewForCpuUpload = () => {
 	const { state } = useLocation();
-	const { cpuID } = state || {};
+	const { cpuID } = state;
 	const navigate = useNavigate();
 	const [reviewText, setReviewText] = useState("")
 	const [score, setScore] = useState("")
@@ -15,12 +15,28 @@ const ReviewForCpuUpload = () => {
 	console.log(selectedItem)
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
 		try {
-			await ApiService.createReview(cpuID);
-			navigate(`/ReviewForCpu/${cpuID}`);
+			if (
+				reviewText === "" || reviewText === null
+				|| score === "" || score === null) {
+				throw new Error("Hiányzó adatok!")
+			} else if (score < 0 || score > 5) {
+				throw new Error("Nem megfelelő pontszámérték!")
+			} else {
+				let recommend = selectedItem === "Ajánlás: Ajánlott";
+				let dataToJson = {
+					"reviewText": reviewText,
+					"score": score,
+					"recommend": recommend
+				}
+
+				e.preventDefault();
+				ApiService.createReview(cpuID, dataToJson)
+					.then(() => (navigateReviewList(cpuID)))
+					.catch((error) => console.error("Hiba az értékelés létrehozásakor: ", error));
+			}
 		} catch (error) {
-			console.error("Hiba az értékelés létrehozásánál: ", error);
+			alert(error);
 		}
 	};
 
@@ -52,7 +68,7 @@ const ReviewForCpuUpload = () => {
 					<input
 						className={"input-field"}
 						type="text"
-						placeholder="Pontszám"
+						placeholder="Pontszám (5 / ?)"
 						id="score"
 						value={score}
 						onChange={(e) => setScore(e.target.value)}

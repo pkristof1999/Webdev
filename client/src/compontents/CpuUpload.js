@@ -11,13 +11,13 @@ const CpuUpload = () => {
 
 	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		try {
 			if (
-				manufacturer === "" || manufacturer === null ||
-				model === "" || model === null ||
-				frequency === "" || frequency === null ||
-				coreCount === "" || coreCount === null) {
+				manufacturer === "" || manufacturer === null
+				|| model === "" || model === null
+				|| frequency === "" || frequency === null
+				|| coreCount === "" || coreCount === null) {
 				throw new Error("Nem adott meg minden adatot!");
 			} else if (!isNumber(coreCount)) {
 			} else {
@@ -30,8 +30,8 @@ const CpuUpload = () => {
 
 				e.preventDefault();
 				ApiService.createCPUEntry(dataToJson)
-					.then(() => navigate('/CPUList'))
-					.catch((error) => console.error('Error creating CPU:', error));
+					.then(() => navigate("/CPUList"))
+					.catch((error) => console.error("Hiba a CPU létrehozásakor: ", error));
 			}
 		} catch (error) {
 			alert(error);
