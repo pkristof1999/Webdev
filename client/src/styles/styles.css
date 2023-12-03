@@ -72,6 +72,10 @@ th, td, tr {
     font-weight: bolder;
 }
 
+.review-text {
+    height: 6em;
+}
+
 .button-style {
     background: whitesmoke;
     font-weight: bolder;
@@ -165,7 +169,7 @@ th, td, tr {
     font-weight: bold;
 }
 
-.cpuupload-h2 {
+.upload-h2 {
     margin-top: 3.8em;
 }
 

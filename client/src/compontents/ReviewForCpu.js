@@ -20,8 +20,8 @@ const ReviewForCpu = () => {
 	}
 
 	const navigateReviewUpload = () => {
-		navigate("/ReviewForCpuUpload");
-	}
+		navigate("/ReviewForCpuUpload", { state: { cpuID } });
+	};
 
 	const handleReviewEntryDelete = (reviewID) => {
 		const confirmDelete = window.confirm("Biztosan kitörli az értékelést a listából?");

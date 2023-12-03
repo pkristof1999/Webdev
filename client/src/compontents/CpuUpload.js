@@ -9,13 +9,6 @@ const CpuUpload = () => {
 	const [frequency, setFrequency] = useState("")
 	const [coreCount, setCoreCount] = useState("")
 
-	const [cpuData, setCPUData] = useState({
-		manufacturer: '',
-		model: '',
-		frequency: '',
-		coreCount: 0,
-	});
-
 	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
